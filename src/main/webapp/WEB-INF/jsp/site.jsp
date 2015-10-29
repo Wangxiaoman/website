@@ -42,7 +42,6 @@
 		         type: "GET",
 		         url:"/ballot",
 		         success: function(result) {
-		        	 alert(result);
 		        	 if(result){
 		        		 $("#ballatValue").attr("hidden",false);
 		        		 $("#ballatValue").html(result);
