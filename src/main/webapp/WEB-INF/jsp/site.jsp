@@ -30,6 +30,13 @@
 			padding-top: 10px;
 			padding-bottom: 10px;
 		}
+		
+		.div-line {
+		    padding-bottom: 9px;
+		    margin: 40px 0 20px;
+		    border-bottom: 1px solid #eee;
+		}
+		
 	</style>
 	
 	<script type="text/javascript">
@@ -54,7 +61,7 @@
 
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container" id="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -107,7 +114,7 @@
 	        </form>
 	    </div>
 	    
-	    <div>
+	    <div class="div-line">
 		    <c:forEach items="${data}" var="item" varStatus="status">
 		    	<c:if test="${status.first}">
 		    		<h1 class="row-apart">
@@ -128,7 +135,7 @@
 		    </c:forEach>
 	    </div>
 	    
-	    <div style="padding-top: 50px;">
+	    <div style="div-line">
 		    <div class="progress">
 		        <div class="progress-bar progress-bar-success" style="width: 45%"><span class="sr-only">35% Complete (success)</span></div>
 		        <div class="progress-bar progress-bar-warning" style="width: 30%"><span class="sr-only">20% Complete (warning)</span></div>
@@ -138,8 +145,9 @@
 	        <button type="button" onclick="ballot();" class="btn btn-success">天灵灵</button>
 	    </div>
 	    
-	    <span class="label label-success" id="ballatValue" hidden="true"></span>
-	    
+	    <div style="div-line">
+	    	<span class="label label-success" id="ballatValue" hidden="true"></span>
+	    </div>
     </div>
     
 </body>
