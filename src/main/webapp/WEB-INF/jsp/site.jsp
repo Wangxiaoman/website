@@ -31,6 +31,26 @@
 			padding-bottom: 10px;
 		}
 	</style>
+	
+	<script type="text/javascript">
+		function clearContent(){
+			window.location.href = "/clear";
+		}
+		
+		function ballot(){
+			$.ajax({
+		         type: "GET",
+		         url:"/ballot",
+		         success: function(result) {
+		        	 alert(result);
+		        	 if(result){
+		        		 $("#ballatValue").attr("hidden",false);
+		        		 $("#ballatValue").html(result);
+		        	 }
+		        }
+		     });
+		}
+	</script>
 </head>
 
 <body>
@@ -83,26 +103,43 @@
 	              <input type="text" name="name" id="name" placeholder="填入新的地铁站" class="form-control">
 	            </div>
 	            <button type="submit" class="btn btn-success">提交</button>
+	            
+	            <button type="button" onclick="clearContent();" class="btn btn-success">清除</button>
 	        </form>
 	    </div>
-	    <c:forEach items="${data}" var="item" varStatus="status">
-	    	<c:if test="${status.first}">
-	    		<h1 class="row-apart">
-	    	</c:if>
-	    	<c:if test="${status.index % 6 == 0 }"><span class="label label-default">${item.name}</span></c:if>
-	    	<c:if test="${status.index % 6 == 1 }"><span class="label label-primary">${item.name}</span></c:if>
-	    	<c:if test="${status.index % 6 == 2 }"><span class="label label-success">${item.name}</span></c:if>
-	    	<c:if test="${status.index % 6 == 3 }"><span class="label label-info">${item.name}</span></c:if>
-	    	<c:if test="${status.index % 6 == 4 }"><span class="label label-warning">${item.name}</span></c:if>
-	    	<c:if test="${status.index % 6 == 5 }"><span class="label label-danger">${item.name}</span>
-	    		<c:if test="${status.last}">
-		    		</h1>
+	    
+	    <div>
+		    <c:forEach items="${data}" var="item" varStatus="status">
+		    	<c:if test="${status.first}">
+		    		<h1 class="row-apart">
 		    	</c:if>
-		    	<c:if test="${! status.last}">
-		    		</h1><h1 class="row-apart">
+		    	<c:if test="${status.index % 6 == 0 }"><span class="label label-default">${item.name}</span></c:if>
+		    	<c:if test="${status.index % 6 == 1 }"><span class="label label-primary">${item.name}</span></c:if>
+		    	<c:if test="${status.index % 6 == 2 }"><span class="label label-success">${item.name}</span></c:if>
+		    	<c:if test="${status.index % 6 == 3 }"><span class="label label-info">${item.name}</span></c:if>
+		    	<c:if test="${status.index % 6 == 4 }"><span class="label label-warning">${item.name}</span></c:if>
+		    	<c:if test="${status.index % 6 == 5 }"><span class="label label-danger">${item.name}</span>
+		    		<c:if test="${status.last}">
+			    		</h1>
+			    	</c:if>
+			    	<c:if test="${! status.last}">
+			    		</h1><h1 class="row-apart">
+			    	</c:if>
 		    	</c:if>
-	    	</c:if>
-	    </c:forEach>
+		    </c:forEach>
+	    </div>
+	    
+	    <div style="padding-top: 50px;">
+		    <div class="progress">
+		        <div class="progress-bar progress-bar-success" style="width: 45%"><span class="sr-only">35% Complete (success)</span></div>
+		        <div class="progress-bar progress-bar-warning" style="width: 30%"><span class="sr-only">20% Complete (warning)</span></div>
+		        <div class="progress-bar progress-bar-danger" style="width: 25%"><span class="sr-only">10% Complete (danger)</span></div>
+		    </div>
+	        <h1  class="row-apart">抽签</h1>
+	        <button type="button" onclick="ballot();" class="btn btn-success">天灵灵</button>
+	    </div>
+	    
+	    <span class="label label-success" id="ballatValue" hidden="true"></span>
 	    
     </div>
     

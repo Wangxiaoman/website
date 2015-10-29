@@ -2,6 +2,7 @@ package com.threenoodles.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,8 @@ public interface SubwayDao {
 	
 	@Select("select * from subway")
 	List<Subway> getList();
+	
+	@Delete("delete from subway")
+	int clear();
 
 }

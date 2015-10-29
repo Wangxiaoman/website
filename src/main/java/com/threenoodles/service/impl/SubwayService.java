@@ -7,4 +7,5 @@ import com.threenoodles.domain.Subway;
 public interface SubwayService {
 	int save(String name);
 	List<Subway> getList();
+	int clear();
 }

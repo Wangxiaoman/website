@@ -9,6 +9,7 @@
 package com.threenoodles.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.threenoodles.domain.Subway;
 import com.threenoodles.service.impl.SubwayService;
@@ -52,5 +54,21 @@ public class SubwayController {
 		return "redirect:/show";
 	}
 	
+	@RequestMapping(value="/clear",method=RequestMethod.GET)
+	public String clear(Model model){
+		subwayService.clear();
+		return "redirect:/show";
+	}
+	
+	@RequestMapping(value="/ballot",method=RequestMethod.GET)
+	@ResponseBody
+	public String ballot(Model model){
+		List<Subway> subways = subwayService.getList();
+		
+		Random random = new Random();
+		int i = random.nextInt(subways.size()-1);
+		
+		return subways.get(i).getName();
+	}
 
 }

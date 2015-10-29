@@ -25,4 +25,9 @@ public class SubwayServiceImpl implements SubwayService {
 	public List<Subway> getList() {
 		return subwayDao.getList();
 	}
+
+	@Override
+	public int clear() {
+		return subwayDao.clear();
+	}
 }
