@@ -72,7 +72,7 @@
     
 	    <div class="jumbotron">
 	       <h1>我的地铁签</h1>
-	       <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+	       <p>我建立的一个地铁标签，自己从输入框里面录入，然后抽签把上面的内容抽出来，嘎嘎，自己玩的！</p>
 	     </div>
     
     	<div class="page-header">

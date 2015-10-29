@@ -31,6 +31,11 @@ public class SubwayController {
 	@Resource
 	private SubwayService subwayService;
 
+	@RequestMapping("/")
+	public String index(Model model){
+		return "redirect:/show";
+	}
+	
 	@RequestMapping("/show")
 	public String toSite(Model model){
 		List<Subway> data = subwayService.getList();
