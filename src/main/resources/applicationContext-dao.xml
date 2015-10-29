@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd" default-lazy-init="true">
+	
+	<!-- 开启dao层的注解扫描 -->
+	<context:component-scan base-package="com.threenoodles.dao" />
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:SystemGlobals.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 初始化redis -->
+	<bean id="redisEngine" class="com.threenoodles.platform.cache.RedisEngine"
+		destroy-method="destroy" lazy-init="true" init-method="init">
+		<property name="redisIps" value="${redis.redisIps}" />
+		<property name="redisMaxActive" value="${redis.redisMaxActive}" />
+		<property name="redisMaxWait" value="${redis.redisMaxWait}" />
+		<property name="redisTestOnBorrow" value="${redis.redisTestOnBorrow}" />
+		<property name="redisTestOnReturn" value="${redis.redisTestOnReturn}" />
+		<property name="redisMaxIdle" value="${redis.redisMaxIdle}" />
+		<property name="redisMinIdle" value="${redis.redisMinIdle}" />
+		<property name="redisTestWhileIdle" value="${redis.redisTestWhileIdle}" />
+		<property name="redisNumTestsPerEvictionRun" value="${redis.redisNumTestsPerEvictionRun}" />
+		<property name="redisTimeBetweenEvictionRunsMillis" value="${redis.redisTimeBetweenEvictionRunsMillis}" />
+	</bean>
+	
+	<bean id="redisManager" class="com.threenoodles.platform.cache.RedisManager">
+		<property name="redisEngine">
+			<ref bean="redisEngine" />
+		</property>	
+	</bean>
+	
+	<!-- 数据库 -->
+    <import resource="classpath:multi-datasource.xml"/>
+	
+	<!-- 初始化dataSource -->
+	<!-- <bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="maxPoolSize" value="${pool.maxPoolSize}" />
+		<property name="minPoolSize" value="${pool.minPoolSize}" />
+		<property name="initialPoolSize" value="${pool.initialPoolSize}" />
+		<property name="acquireIncrement" value="${pool.acquireIncrement}" />
+		<property name="maxIdleTime" value="${pool.maxIdleTime}" />
+	</bean>
+
+	<bean id="dataSource" parent="parentDataSource">
+		<property name="driverClass" value="${database.driverClassName}" />
+		<property name="jdbcUrl" value="${database.url}" />
+		<property name="user" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+
+	<bean id="baseDao" class="com.threenoodles.platform.persistence.dao.BaseDaoImpl">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean> -->
+
+</beans>

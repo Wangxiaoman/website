@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <import resource="classpath:datasources.xml"/>
+    <import resource="classpath:multi-datasource-common.xml"/><!-- 引入waimai-multi-datasource的相关配置 -->
+
+    <bean id="multipleDataSource" class="com.threenoodles.platform.muldb.MultipleDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String"> <!-- 数据源配置 -->
+                <entry key="ichunker" value-ref="ichunker"/>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="ichunker"/> <!-- 默认数据源 -->
+        <property name="packageDataSource"><!-- 包级别数据源配置 -->
+            <map>
+                <entry key="com.threenoodles.dao" value="ichunker"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="multiSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="multipleDataSource"/>
+        <!-- 配置mybatis配置文件的位置 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 配置扫描Mapper XML的位置,如果没有的可以删除 -->
+        <!-- <property name="mapperLocations" value="classpath*:mapper/*.xml"/> -->
+    </bean>
+
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="multiSqlSessionFactory"/>
+    </bean>
+
+    <!-- 配置扫描Mapper接口的包路径 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 如果是多个包名可用",; \t\n"中任意符号分隔开，详见：MapperScannerConfigurer[269行] -->
+        <property name="basePackage"
+                  value="com.threenoodles.dao;com.threenoodles.platform.easemob.dao"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+    </bean>
+
+
+
+</beans>
