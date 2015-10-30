@@ -136,17 +136,19 @@
 	    </div>
 	    
 	    <div style="div-line">
-		    <div class="progress">
-		        <div class="progress-bar progress-bar-success" style="width: 45%"><span class="sr-only">35% Complete (success)</span></div>
-		        <div class="progress-bar progress-bar-warning" style="width: 30%"><span class="sr-only">20% Complete (warning)</span></div>
-		        <div class="progress-bar progress-bar-danger" style="width: 25%"><span class="sr-only">10% Complete (danger)</span></div>
-		    </div>
+<!-- 		    <div class="progress"> -->
+<!-- 		        <div class="progress-bar progress-bar-success" style="width: 15%"><span class="sr-only">15% Complete (success)</span></div> -->
+<!-- 		        <div class="progress-bar progress-bar-warning" style="width: 25%"><span class="sr-only">25% Complete (warning)</span></div> -->
+<!-- 		        <div class="progress-bar progress-bar-primary" style="width: 60%"><span class="sr-only">60% Complete (danger)</span></div> -->
+<!-- 		    </div> -->
 	        <h1  class="row-apart">抽签</h1>
-	        <button type="button" onclick="ballot();" class="btn btn-success">天灵灵</button>
+	        <button type="button" onclick="ballot();" class="btn btn-success">天灵灵，地灵灵</button>
 	    </div>
 	    
-	    <div style="div-line">
-	    	<span class="label label-success" id="ballatValue" hidden="true"></span>
+	    <div style="padding-top: 30px;">
+	    	<h1>我的抽签结果，木哈哈：
+	    		<span class="label label-success" id="ballatValue" hidden="true"></span>
+	    	</h1>
 	    </div>
     </div>
     
