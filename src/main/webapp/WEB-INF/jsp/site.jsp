@@ -150,6 +150,14 @@
 	    		<span class="label label-success" id="ballatValue" hidden="true"></span>
 	    	</h1>
 	    </div>
+	    
+	    
+	    <div class="page-header" style="padding-top: 30px;">
+	        <h3>备注：</h3>
+	    </div>
+	    <div class="well">
+        	<p>一个小工具，自己玩一玩</p>
+      </div>
     </div>
     
 </body>
