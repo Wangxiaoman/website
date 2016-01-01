@@ -1,6 +1,7 @@
 package com.threenoodles.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Plan {
 
@@ -19,10 +20,10 @@ public class Plan {
   private int money;
   // 0-未开始、1-已经开始、2-完成
   private int status;
-  // 父节点，如果为0那么为根级任务
-  private int parentId;
   private int userName;
 
+  private List<PlanItem> planItems;
+  
   public void setId(int id) {
     this.id = id;
   }
@@ -87,14 +88,6 @@ public class Plan {
     return status;
   }
 
-  public void setParentId(int parentId) {
-    this.parentId = parentId;
-  }
-
-  public int getParentId() {
-    return parentId;
-  }
-
   public int getUserName() {
     return userName;
   }
@@ -102,4 +95,13 @@ public class Plan {
   public void setUserName(int userName) {
     this.userName = userName;
   }
+
+  public List<PlanItem> getPlanItems() {
+    return planItems;
+  }
+
+  public void setPlanItems(List<PlanItem> planItems) {
+    this.planItems = planItems;
+  }
+
 }

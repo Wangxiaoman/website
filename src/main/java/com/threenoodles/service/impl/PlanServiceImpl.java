@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.threenoodles.dao.PlanDao;
 import com.threenoodles.domain.Plan;
+import com.threenoodles.domain.PlanItem;
 import com.threenoodles.service.PlanService;
 
 @Service
@@ -35,9 +36,13 @@ public class PlanServiceImpl implements PlanService {
 
     
     @Override
-    public List<Plan> queryList(int parentId) throws Exception {
+    public List<Plan> queryList() throws Exception {
     	try{
-			List<Plan> result = planDao.queryList(parentId);
+			List<Plan> result = planDao.queryList();
+			for(Plan plan : result){
+			  List<PlanItem> items = planDao.queryItemList(plan.getId());
+			  plan.setPlanItems(items);
+			}
 			return result ;
         }catch(Exception ex){
 	    	throw ex;
@@ -51,6 +56,15 @@ public class PlanServiceImpl implements PlanService {
         }catch(Exception ex){
 	    	throw ex;
 	    }
+    }
+
+    @Override
+    public int insertItem(PlanItem planItem) throws Exception {
+      try{
+        return planDao.insertItem(planItem);
+      }catch(Exception ex){
+        throw ex;
+      }
     }
 
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.threenoodles.domain.Plan;
+import com.threenoodles.domain.PlanItem;
 import com.threenoodles.service.PlanService;
 
 @Controller
@@ -32,12 +33,10 @@ public class PlanController {
 	private PlanService planService;
 
 	@RequestMapping(value="/list",method=RequestMethod.GET)
-	public String save(Model model,
-			@RequestParam(required=false,value="parentId",defaultValue="0") int parentId){
+	public String save(Model model){
     try {
-      List<Plan> plans = planService.queryList(parentId);
+      List<Plan> plans = planService.queryList();
       model.addAttribute("plans", plans);
-      model.addAttribute("parentId", parentId);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -47,15 +46,14 @@ public class PlanController {
 	@RequestMapping(value="/status",method=RequestMethod.GET)
 	public String updateStatus(Model model,
 	    @RequestParam(required=true,value="id") int id,
-	    @RequestParam(required=true,value="status") int status,
-	    @RequestParam(required=false,value="parentId",defaultValue="0") int parentId
+	    @RequestParam(required=true,value="status") int status
 	    ){
 	  try {
       planService.update(id, status);
     } catch (Exception e) {
       e.printStackTrace();
     }
-		return "redirect:/plan/list?parentId="+parentId;
+		return "redirect:/plan/list";
 	}
 	
 	@RequestMapping(value="/save",method=RequestMethod.POST)
@@ -63,7 +61,6 @@ public class PlanController {
 	    @RequestParam(required=true,value="name") String name,
 	    @RequestParam(required=true,value="content") String content,
 	    @RequestParam(required=true,value="money",defaultValue="0") int money,
-	    @RequestParam(required=true,value="parentId",defaultValue="0") int parentId,
 	    @RequestParam(required=true,value="userName",defaultValue="1") int userName,
 	    @RequestParam(required=true,value="beginTime",defaultValue="") String beginTime,
 	    @RequestParam(required=true,value="endTime",defaultValue="") String endTime
@@ -73,7 +70,6 @@ public class PlanController {
 	  plan.setName(name);
 	  plan.setContent(content);
 	  plan.setMoney(money);
-	  plan.setParentId(parentId);
 	  plan.setUserName(userName);
 	  plan.setBeginTime(beginTime);
 	  plan.setEndTime(endTime);
@@ -84,13 +80,41 @@ public class PlanController {
       e.printStackTrace();
     }
 	  
-		return "redirect:/plan/list?parentId="+parentId;
+		return "redirect:/plan/list";
 	}
 	
+	@RequestMapping(value="/item",method=RequestMethod.POST)
+  public String saveItem(Model model,
+      @RequestParam(required=true,value="name") String name,
+      @RequestParam(required=true,value="money",defaultValue="0") int money,
+      @RequestParam(required=true,value="planId") int planId,
+      @RequestParam(required=false,value="planId",defaultValue="") String content
+      ){
+    
+    PlanItem planItem = new PlanItem();
+    planItem.setName(name);
+    planItem.setMoney(money);
+    planItem.setPlanId(planId);
+    planItem.setContent(content);
+    try {
+      planService.insertItem(planItem);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "redirect:/plan/list";
+  }
+	
 	@RequestMapping(value="/toSave",method=RequestMethod.GET)
-  public String toSave(Model model,@RequestParam(required=false,value="parentId",defaultValue="0") int parentId){
-	  model.addAttribute("parentId",parentId);
+  public String toSave(Model model){
 	  return "/plan_save";
 	}
+	
+	@RequestMapping(value="/toItemSave",method=RequestMethod.GET)
+  public String toItemSave(Model model,
+      @RequestParam(required=true,value="planId") String planId
+      ){
+	  model.addAttribute("planId", planId);
+    return "/item_save";
+  }
 
 }

@@ -85,44 +85,23 @@ body {
 	<div class="container theme-showcase">
 
 		<div class="jumbotron">
-			<h1>新增计划</h1>
+			<h1>新增详情</h1>
 		</div>
 
 		<div class="page-header">
 
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
-				<div class="panel-heading">最新计划</div>
+				<div class="panel-heading">详情</div>
 				<form id="form" class="form-horizontal" method="post"
-					action="/plan/save">
-					<input type="hidden" id="parentId" name="parentId"
-						value="${parentId}" />
+					action="/plan/item">
+					<input type="hidden" id="planId" name="planId"
+						value="${planId}" />
 					<div class="form-group">
 						<label for="normalText" class="col-sm-2 control-label">名称</label>
 						<div class="col-sm-8">
 							<input name="name" id="name" class="form-control" type="text"
 								placeholder="请输入" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="normalText" class="col-sm-2 control-label">备注</label>
-						<div class="col-sm-8">
-							<input name="content" id="content" class="form-control"
-								type="text" placeholder="请输入" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="normalText" class="col-sm-2 control-label">计划开始时间</label>
-						<div class="col-sm-8">
-							<input name="beginTime" id="beginTime" class="form-control"
-								type="text" placeholder="请输入" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="normalText" class="col-sm-2 control-label">计划结束时间</label>
-						<div class="col-sm-8">
-							<input name="endTime" id="endTime" class="form-control"
-								type="text" placeholder="请输入" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -134,15 +113,13 @@ body {
 					</div>
 					
 					<div class="form-group">
-						<label for="normalText" class="col-sm-2 control-label">发起人</label>
+						<label for="normalText" class="col-sm-2 control-label">描述</label>
 						<div class="col-sm-8">
-							<select name="userName">
-								<option value="1">晓满</option>
-								<option value="2">大傻</option>
-							</select>
+							<input name="content" id="content" class="form-control" type="text"
+								placeholder="请输入" />
 						</div>
 					</div>
-
+					
 					<div style="text-align: center; padding: 20px;">
 						<input type="submit" id="save" value="提交" class="btn btn-default" />
 					</div>

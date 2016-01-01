@@ -3,6 +3,7 @@ package com.threenoodles.service;
 import java.util.List;
 
 import com.threenoodles.domain.Plan;
+import com.threenoodles.domain.PlanItem;
 
 public interface PlanService {
     /**
@@ -13,6 +14,8 @@ public interface PlanService {
      * @throws Exception 系统异常
      */
     public int insert(Plan plan) throws Exception;
+    
+    public int insertItem(PlanItem planItem) throws Exception;
 
     /**
      * 修改
@@ -30,7 +33,7 @@ public interface PlanService {
      * @return 实体对象列表
      * @throws Exception 系统异常
      */
-    public List<Plan> queryList(int parentId) throws Exception;
+    public List<Plan> queryList() throws Exception;
 
     /**
      * 查询对象
