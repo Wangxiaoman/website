@@ -1,6 +1,6 @@
 package com.threenoodles.service;
 
-import java.util.List;
+import org.springframework.ui.Model;
 
 import com.threenoodles.domain.Plan;
 import com.threenoodles.domain.PlanItem;
@@ -33,7 +33,7 @@ public interface PlanService {
      * @return 实体对象列表
      * @throws Exception 系统异常
      */
-    public List<Plan> queryList() throws Exception;
+    public void queryList(Model model) throws Exception;
 
     /**
      * 查询对象

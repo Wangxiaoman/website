@@ -133,7 +133,7 @@ body {
 								<td style="vertical-align: middle; text-align: center;">${obj.content }</td>
 								<td style="vertical-align: middle; text-align: center;">${obj.beginTime }</td>
 								<td style="vertical-align: middle; text-align: center;">${obj.endTime }</td>
-								<td style="vertical-align: middle; text-align: center;">${obj.money }</td>
+								<td style="vertical-align: middle; text-align: center;">${obj.money }￥</td>
 								<td style="vertical-align: middle; text-align: center;"><fmt:formatDate
 										value="${obj.createTime}" pattern="yyyy-MM-dd" /></td>
 								<td style="vertical-align: middle; text-align: center;">${obj.userName == 1?'晓满':'大傻' }</td>
@@ -179,6 +179,8 @@ body {
 						</c:forEach>
 					</tbody>
 				</table>
+				<br>
+				<h3>预算总额：${allMoney}￥；现在花费：${allCurrentMoney}￥</h3>
 			</div>
 			<button type="button" class="btn btn-default btn-lg"
 				onclick="toSave('${parentId}')">

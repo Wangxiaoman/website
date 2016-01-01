@@ -8,8 +8,6 @@
  */
 package com.threenoodles.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -35,8 +33,7 @@ public class PlanController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String save(Model model){
     try {
-      List<Plan> plans = planService.queryList();
-      model.addAttribute("plans", plans);
+      planService.queryList(model);
     } catch (Exception e) {
       e.printStackTrace();
     }
