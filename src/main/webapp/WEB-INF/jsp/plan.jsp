@@ -134,9 +134,9 @@ body {
 								<td style="vertical-align: middle; text-align: center;">${obj.beginTime }</td>
 								<td style="vertical-align: middle; text-align: center;">${obj.endTime }</td>
 								<td style="vertical-align: middle; text-align: center;">${obj.money }</td>
-								<td style="vertical-align: middle; text-align: center;">${obj.userName == 1?'晓满':'大傻' }</td>
 								<td style="vertical-align: middle; text-align: center;"><fmt:formatDate
-										value="${obj.createTime}" pattern="yyyy-MM-dd HH" /></td>
+										value="${obj.createTime}" pattern="yyyy-MM-dd" /></td>
+								<td style="vertical-align: middle; text-align: center;">${obj.userName == 1?'晓满':'大傻' }</td>
 								<td style="vertical-align: middle; text-align: center;"><c:if
 										test="${obj.status == 0}">
 											未开始
@@ -165,8 +165,9 @@ body {
 											<p>
 												时间：
 												<fmt:formatDate value="${planItem.createTime}"
-													pattern="yyyy-MM-dd HH" />
+													pattern="yyyy-MM-dd" />
 											</p>
+											<p>详情： ${planItem.content }</p>
 										</div>
 									</c:forEach></td>
 							</tr>

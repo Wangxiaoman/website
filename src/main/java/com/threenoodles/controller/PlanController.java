@@ -88,7 +88,7 @@ public class PlanController {
       @RequestParam(required=true,value="name") String name,
       @RequestParam(required=true,value="money",defaultValue="0") int money,
       @RequestParam(required=true,value="planId") int planId,
-      @RequestParam(required=false,value="planId",defaultValue="") String content
+      @RequestParam(required=false,value="content",defaultValue="") String content
       ){
     
     PlanItem planItem = new PlanItem();
