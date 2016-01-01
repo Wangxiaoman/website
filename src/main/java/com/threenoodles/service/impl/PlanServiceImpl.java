@@ -40,7 +40,12 @@ public class PlanServiceImpl implements PlanService {
     	try{
 			List<Plan> result = planDao.queryList();
 			for(Plan plan : result){
+			  int currentMoney = 0;
 			  List<PlanItem> items = planDao.queryItemList(plan.getId());
+			  for(PlanItem pi : items){
+			    currentMoney = currentMoney + pi.getMoney();
+			  }
+			  plan.setCurrentMoney(currentMoney);
 			  plan.setPlanItems(items);
 			}
 			return result ;

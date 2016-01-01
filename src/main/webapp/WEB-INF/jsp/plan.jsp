@@ -169,7 +169,11 @@ body {
 											</p>
 											<p>详情： ${planItem.content }</p>
 										</div>
-									</c:forEach></td>
+									</c:forEach>
+									<c:if test="${obj.currentMoney > 0}">
+										<h3>实际消费总和：${obj.currentMoney}</h3>
+									</c:if>
+								</td>
 							</tr>
 
 						</c:forEach>

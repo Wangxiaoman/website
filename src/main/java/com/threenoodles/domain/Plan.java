@@ -21,6 +21,8 @@ public class Plan {
   // 0-未开始、1-已经开始、2-完成
   private int status;
   private int userName;
+  
+  private int currentMoney;
 
   private List<PlanItem> planItems;
   
@@ -102,6 +104,14 @@ public class Plan {
 
   public void setPlanItems(List<PlanItem> planItems) {
     this.planItems = planItems;
+  }
+
+  public int getCurrentMoney() {
+    return currentMoney;
+  }
+
+  public void setCurrentMoney(int currentMoney) {
+    this.currentMoney = currentMoney;
   }
 
 }
