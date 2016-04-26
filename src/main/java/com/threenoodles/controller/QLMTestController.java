@@ -32,9 +32,9 @@ public class QLMTestController {
     int userCount = userDao.exist(username);
     if(userCount == 0){
       userDao.insert(username);
-      return "already used";
+      return "register success";
     }
-    return "register success";
+    return "already used";
   }
   
 }
