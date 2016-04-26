@@ -15,6 +15,6 @@ public class QLMTestController {
       @RequestParam(required=true,value="a") int a,
       @RequestParam(required=true,value="b") int b
       ) {
-    return String.valueOf(a+b);
+    return String.valueOf(a*b);
   }
 }
