@@ -18,23 +18,28 @@
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="0" />
 	</bean>
+	
+	<bean id="handlerExceptionResolver" class="com.threenoodles.platform.handler.ExceptionResolver">
+	</bean>
 
 	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 	</bean>
 	
-	<bean id="handlerExceptionResolver" class="com.threenoodles.platform.handler.ExceptionResolver">
-	</bean>
+	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter" />
 
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
+				<ref bean="stringConverter" />
 				<ref bean="jacksonMessageConverter" />
 			</list>
 		</property>
 	</bean>
+	
+	
 
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
  	<bean id="viewResolver"
