@@ -28,7 +28,7 @@ public class QLMTestController {
   @RequestMapping(value = "/register", produces = { "text/plain;charset=UTF-8" })
   @ResponseBody
   public String register(
-      @RequestParam(required=true,value="username") String username) {
+      @RequestParam(required=true,value="registerusername") String username) {
     int userCount = userDao.exist(username);
     if(userCount == 0){
       userDao.insert(username);
