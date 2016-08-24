@@ -33,7 +33,6 @@
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<ref bean="stringConverter" />
 				<ref bean="jacksonMessageConverter" />
 			</list>
 		</property>
